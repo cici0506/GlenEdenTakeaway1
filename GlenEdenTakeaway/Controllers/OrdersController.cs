@@ -58,7 +58,7 @@ namespace GlenEdenTakeaway.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("OrderId,OrderDate,Quantity,ItemName,Price,CustomerId,EmployeeId")] Order order)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(order);
                 await _context.SaveChangesAsync();
@@ -95,7 +95,7 @@ namespace GlenEdenTakeaway.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {

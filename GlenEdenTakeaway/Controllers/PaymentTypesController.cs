@@ -58,7 +58,7 @@ namespace GlenEdenTakeaway.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaymentTypeId,PaymentType1")] PaymentType paymentType)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(paymentType);
                 await _context.SaveChangesAsync();
