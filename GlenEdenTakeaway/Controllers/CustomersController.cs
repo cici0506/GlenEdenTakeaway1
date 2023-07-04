@@ -60,7 +60,7 @@ namespace GlenEdenTakeaway.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,PhoneNumber,Email,Street,City,ZipCode")] Customer Customer)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(Customer);
                 await _context.SaveChangesAsync();
@@ -97,7 +97,7 @@ namespace GlenEdenTakeaway.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
