@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GlenEdenTakeaway.Areas.Identity.Data;
 using GlenEdenTakeaway.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GlenEdenTakeaway.Controllers
 {
+    [Authorize]
     public class PaymentsController : Controller
     {
         private readonly IdentityContext _context;
@@ -58,7 +60,7 @@ namespace GlenEdenTakeaway.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaymentId,CustomerId,OrderItemId,PaymentDate,TotalAmount,PaymentTypeId")] Payment payment)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(payment);
                 await _context.SaveChangesAsync();
@@ -95,7 +97,7 @@ namespace GlenEdenTakeaway.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GlenEdenTakeaway.Areas.Identity.Data;
 using GlenEdenTakeaway.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GlenEdenTakeaway.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly IdentityContext _context;
@@ -58,7 +60,7 @@ namespace GlenEdenTakeaway.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EmployeeId,FirstName,LastName,PhoneNumber,DateOfBirth")] Employee employee)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
@@ -95,7 +97,7 @@ namespace GlenEdenTakeaway.Controllers
                 return NotFound();
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {

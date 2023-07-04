@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GlenEdenTakeaway.Areas.Identity.Data;
 using GlenEdenTakeaway.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GlenEdenTakeaway.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         private readonly IdentityContext _context;
