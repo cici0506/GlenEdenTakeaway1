@@ -4,7 +4,7 @@ namespace GlenEdenTakeaway.Models
 {
     public class Employee
     {
-        [Display(Name = "Employee Id")]
+        [Display(Name = "Employee")]
         public int EmployeeId { get; set; }
         [Required]
         [Display(Name = "First Name")]

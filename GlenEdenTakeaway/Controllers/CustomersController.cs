@@ -22,13 +22,23 @@ namespace GlenEdenTakeaway.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Customer != null ? 
-                          View(await _context.Customer.ToListAsync()) :
-                          Problem("Entity set 'IdentityContext.Customer'  is null.");
-        }
+            if (_context.Customer == null)
+            {
+                return Problem("Entity set 'GlenEdenTakeawayContext.Customers'  is null.");
+            }
 
+            var customer = from m in _context.Customer
+                           select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customer = customer.Where(s => s.FirstName!.Contains(searchString));
+            }
+
+            return View(await customer.ToListAsync());
+        }
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -4,7 +4,7 @@ namespace GlenEdenTakeaway.Models
 {
     public class Customer
     {
-        [Display(Name = "Customer Id")]
+        [Display(Name = "Customer")]
         public int CustomerId { get; set; }
         [Required]
         [Display(Name = "First Name")]
