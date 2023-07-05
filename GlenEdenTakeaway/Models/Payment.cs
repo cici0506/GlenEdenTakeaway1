@@ -15,7 +15,7 @@ namespace GlenEdenTakeaway.Models
         public DateTime PaymentDate { get; set; }
         [Required]
         [Display(Name = "Total Amount")]
-        [Range(1.00, 300.00, ErrorMessage = "Total Amount must be between 1.00 and 300.00")]
+        [DataType(DataType.Currency)]
         public decimal TotalAmount { get; set; }
         [Display(Name = "Payment Type")]
         public int PaymentTypeId { get; set; }

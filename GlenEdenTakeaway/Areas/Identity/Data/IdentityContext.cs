@@ -46,6 +46,4 @@ public class IdentityContext : IdentityDbContext<GlenEdenTakeawayUser>
     public DbSet<GlenEdenTakeaway.Models.Payment> Payment { get; set; } = default!;
     
     public DbSet<GlenEdenTakeaway.Models.PaymentType> PaymentType { get; set; } = default!;
-
-
 }
